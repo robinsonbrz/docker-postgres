@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  db_postgres_rob:
+    container_name: db_postgres_rob
+    image: postgres:13-alpine
+    volumes:
+      - postgres_ingresso_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWD}
+    env_file:
+      - ./.env
+    ports:
+      - "127.0.0.1:5435:5432"
+
+volumes:
+  postgres_ingresso_data:
