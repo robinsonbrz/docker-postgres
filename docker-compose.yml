@@ -5,7 +5,7 @@ services:
     container_name: db_postgres_rob
     image: postgres:13-alpine
     volumes:
-      - postgres_rob_data:/var/lib/postgresql/data
+      - docker_rob_db_data:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USER}
@@ -25,3 +25,6 @@ networks:
     ipam:
         config:
           - subnet: 172.18.0.0/24
+
+volumes:
+    docker_rob_db_data:
