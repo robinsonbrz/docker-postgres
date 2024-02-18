@@ -16,15 +16,15 @@ services:
       - "127.0.0.1:5435:5432"
 
     networks:
-      rede:
+      docker-db_rede:
         ipv4_address: 172.18.0.2
 
 networks:
-  rede:
+  docker-db_rede:
+    name: docker-db_rede
     driver: bridge
     ipam:
-        config:
-          - subnet: 172.18.0.0/24
-
+      config:
+        - subnet: 172.18.0.0/24
 volumes:
     docker_rob_db_data:
