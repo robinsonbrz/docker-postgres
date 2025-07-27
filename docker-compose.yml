@@ -3,7 +3,10 @@ version: '3.8'
 services:
   db_postgres_rob:
     container_name: db_postgres_rob
-    image: postgres:13-alpine
+    image: postgres:16-alpine
+    restart: always
+    # set shared memory limit when using docker compose
+    shm_size: 128mb
     volumes:
       - docker_rob_db_data:/var/lib/postgresql/data
     environment:
@@ -13,11 +16,9 @@ services:
     env_file:
       - ./.env
     ports:
-      - "127.0.0.1:5435:5432"
-
+      - "127.0.0.1:5432:5432"
     networks:
-      docker-db_rede:
-        ipv4_address: 172.18.0.2
+      - docker-db_rede
 
 networks:
   docker-db_rede:
@@ -26,5 +27,6 @@ networks:
     ipam:
       config:
         - subnet: 172.18.0.0/24
+
 volumes:
-    docker_rob_db_data:
+  docker_rob_db_data:
